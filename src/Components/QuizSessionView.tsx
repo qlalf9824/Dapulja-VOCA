@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import QuizSessionResult from './QuizSessionResult'
 import { State, Quiz } from './QuizSessionType'
 // View
 function QuizSessionView(state: State, onClick: (selected: string) => void) {
@@ -29,7 +29,7 @@ function QuizSessionView(state: State, onClick: (selected: string) => void) {
       <div>완료 여부: {state.isCompleted ? '완료' : '미완료'}</div>
       <div>맞은 개수 {state.correctCount}</div>
       <div>틀린 개수 {state.inCorrectCount}</div>
-      {state.isCompleted ? <Link to='/'>홈으로</Link> : QuizView(currentQuiz)}
+      {state.isCompleted ? QuizSessionResult(state) : QuizView(currentQuiz)}
     </section>
   )
 }
