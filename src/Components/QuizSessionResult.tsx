@@ -3,19 +3,27 @@ import { Link } from 'react-router-dom'
 
 const tableStyle = {
   margin: '0 auto',
-  marginTop: '10px',
-  marginBottom: '10px'
+  marginTop: '20px',
+  marginBottom: '20px',
+  width: '500px',
+  height: '400px'
+}
+
+const theadStyle = {
+  backgroundColor: '#fcd5ce'
 }
 
 function QuizSessionResult(state: State) {
   return (
     <section>
       <table style={tableStyle}>
-        <thead>
-          <th></th>
-          <th>정답</th>
-          <th>선택한 답</th>
-          <th>정답여부</th>
+        <thead style={theadStyle}>
+          <tr>
+            <th></th>
+            <th>정답</th>
+            <th>선택한 답</th>
+            <th>정답여부</th>
+          </tr>
         </thead>
         <tbody>
           {state.quizResults.map((value, index) => {
