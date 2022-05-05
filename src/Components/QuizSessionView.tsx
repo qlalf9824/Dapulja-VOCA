@@ -1,19 +1,28 @@
 import QuizSessionResult from './QuizSessionResult'
 import { State, Quiz } from './QuizSessionType'
+import './quizSessionView.css'
 // View
 function QuizSessionView(state: State, onClick: (selected: string) => void) {
   function QuizView(quiz: Quiz) {
     const articleStyle = {
       marginTop: '16px',
       padding: '8px',
-      background: '#efefef'
+      background: '#fae1dd',
+      paddingBottom: '50px'
     }
+
+    const headerStyle = {
+      fontSize: '50px',
+      marginBottom: '20px',
+      marginTop: '30px'
+    }
+
     return (
       <article style={articleStyle}>
-        <header>{quiz.text}</header>
+        <header style={headerStyle}>{quiz.text}</header>
         {quiz.selections.map((sel, idx) => {
           return (
-            <button key={idx} onClick={() => onClick(sel)}>
+            <button id='buttonStyle' key={idx} onClick={() => onClick(sel)}>
               {sel}
             </button>
           )

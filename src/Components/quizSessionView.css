@@ -1,0 +1,15 @@
+#buttonStyle {
+  background-color: rgb(255, 215, 186);
+  border: none;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: darkgrey 1px 1px 5px;
+}
+
+#buttonStyle:active {
+  box-shadow: none;
+}
+
+#buttonStyle:hover {
+  background-color: #fec89a;
+}
