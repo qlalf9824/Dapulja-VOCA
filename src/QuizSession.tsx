@@ -49,6 +49,29 @@ function quizSessionReducer(state: State, action: Action) {
   // 맞은 혹은 틀린 개수가 업데이트 되고,
   // 다음 퀴즈로 넘어가야 함.
   const newState = { ...state }
+  let isCorrect: boolean
+
+  if (action.payload.selected === state.quizList[action.payload.quizIndex].answer) {
+    newState.correctCount += 1
+    isCorrect = true
+  } else {
+    newState.inCorrectCount += 1
+    isCorrect = false
+  }
+
+  if (action.payload.quizIndex === state.quizList.length - 1) newState.isCompleted = true
+  else newState.currentIndex += 1
+
+  const result: QuizResult = {
+    quizIndex: action.payload.quizIndex,
+    createdAt: new Date(),
+    answer: state.quizList[action.payload.quizIndex].answer,
+    selected: action.payload.selected,
+    isCorrect: isCorrect
+  }
+
+  newState.quizResults.push(result)
+
   return newState
 }
 
