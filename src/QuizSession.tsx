@@ -142,25 +142,49 @@ function QuizSession() {
     // 해당 단어의 뜻 하나와 다른 단어의 뜻 둘을 포함하여
     // 3지 선다형 뜻 찾기 문제 보기로 변환한다.
     // 아래 데이터는 예시 데이터이므로 삭제.
+
+    function shuffle(array: Array<String>) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1))
+        ;[array[i], array[j]] = [array[j], array[i]]
+      }
+    }
+
+    const createQuizList = () => {
+      let result: Quiz[] = []
+
+      for (let i = 0; i < initialData.length; i++) {
+        const random_1: number = Math.floor(Math.random() * initialData.length)
+        let random_2: number = Math.floor(Math.random() * initialData.length)
+
+        while (random_2 == random_1) {
+          random_2 = Math.floor(Math.random() * initialData.length)
+        }
+
+        const selectList = [
+          initialData[i].meaning,
+          initialData[random_1].meaning,
+          initialData[random_2].meaning
+        ]
+        shuffle(selectList)
+
+        result.push({
+          index: i,
+          text: initialData[i].text, // 문제
+          answer: initialData[i].meaning, // 정답
+          selections: selectList
+        })
+      }
+
+      return result
+    }
+
     return {
       isCompleted: false,
       correctCount: 0,
       inCorrectCount: 0,
       currentIndex: 0,
-      quizList: [
-        {
-          index: 0,
-          text: 'apple',
-          answer: 'n. 사과',
-          selections: ['n. 사과', 'n. 밀가루 반죽']
-        },
-        {
-          index: 1,
-          text: 'brick',
-          answer: 'n. 벽돌',
-          selections: ['n. 벽돌', 'v. 뛰다, 급증하다']
-        }
-      ],
+      quizList: createQuizList(),
       quizResults: []
     }
   }
