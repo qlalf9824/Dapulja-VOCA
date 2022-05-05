@@ -177,10 +177,15 @@ function QuizSession() {
       let result: Quiz[] = []
 
       for (let i = 0; i < initialData.length; i++) {
-        const random_1: number = Math.floor(Math.random() * initialData.length)
+        let random_1: number = Math.floor(Math.random() * initialData.length)
+
+        while (i === random_1) {
+          random_1 = Math.floor(Math.random() * initialData.length)
+        }
+
         let random_2: number = Math.floor(Math.random() * initialData.length)
 
-        while (random_2 == random_1) {
+        while (random_2 === random_1 || i === random_2) {
           random_2 = Math.floor(Math.random() * initialData.length)
         }
 
