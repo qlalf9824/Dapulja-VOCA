@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios, { AxiosResponse } from 'axios'
 
 interface Word {
   text: string
@@ -32,9 +34,27 @@ function WordList() {
     { text: 'leap', meaning: 'v. 뛰다, 급증하다' }
   ]
 
+  const [words, setWords] = useState<Word[]>(wordlist)
+
+  const getPosts = async () => {
+    try {
+      const response: AxiosResponse<any> = await axios.get(
+        'https://solution-tmp.s3.ap-northeast-2.amazonaws.com/vocabs.json'
+      )
+      setWords(response.data)
+    } catch (e) {
+      console.log(e)
+      alert('단어를 다 불러오지 못했습니다.')
+    }
+  }
+
+  useEffect(() => {
+    getPosts()
+  }, [words])
+
   return (
     <section>
-      {wordlist.map((word) => WordView(word))}
+      {words.map((word) => WordView(word))}
       <Link to='/' style={linkStyle}>
         홈으로
       </Link>
