@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'
+import { initialData } from './data/initialData'
 
 interface Word {
   text: string
@@ -28,13 +29,8 @@ function WordList() {
   // warning!
   // 만약 어떠한 이유로 작동이 되지 않는다면, 그 문제를 우회해서
   // 전체 기능이 동작하도록 코드를 구현.
-  const wordlist: Word[] = [
-    { text: 'apple', meaning: 'n. 사과' },
-    { text: 'brick', meaning: 'n. 벽돌' },
-    { text: 'leap', meaning: 'v. 뛰다, 급증하다' }
-  ]
 
-  const [words, setWords] = useState<Word[]>(wordlist)
+  const [words, setWords] = useState<Word[]>(initialData)
 
   const getPosts = async () => {
     try {
@@ -44,7 +40,6 @@ function WordList() {
       setWords(response.data)
     } catch (e) {
       console.log(e)
-      alert('단어를 다 불러오지 못했습니다.')
     }
   }
 
