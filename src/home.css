@@ -1,0 +1,27 @@
+#space {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+#menu {
+  background-color: rgb(255, 215, 186);
+  border: none;
+  margin: 10px;
+  box-shadow: darkgrey 1px 1px 5px;
+  text-decoration: none;
+  width: 150px;
+  height: 100px;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menu:active {
+  box-shadow: none;
+}
+
+#menu:hover {
+  background-color: #fec89a;
+}
