@@ -35,7 +35,7 @@ function QuizSessionView(state: State, onClick: (selected: string) => void) {
 
   return (
     <section>
-      <div>완료 여부: {state.isCompleted ? '완료' : '미완료'}</div>
+      <div>완료 여부: {state.isCompleted ? <span id='complete'>완료</span> : '미완료'}</div>
       <div>맞은 개수 {state.correctCount}</div>
       <div>틀린 개수 {state.inCorrectCount}</div>
       {state.isCompleted ? QuizSessionResult(state) : QuizView(currentQuiz)}

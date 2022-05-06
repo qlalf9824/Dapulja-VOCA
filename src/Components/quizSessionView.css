@@ -13,3 +13,7 @@
 #buttonStyle:hover {
   background-color: #fec89a;
 }
+
+#complete {
+  color: red;
+}
