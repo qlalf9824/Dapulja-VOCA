@@ -3,6 +3,18 @@ import { Link } from 'react-router-dom'
 import axios, { AxiosResponse } from 'axios'
 import { initialData } from './data/initialData'
 
+const tableStyle = {
+  margin: '0 auto',
+  marginTop: '20px',
+  marginBottom: '20px',
+  width: '400px',
+  height: '350px'
+}
+
+const thStyle = {
+  backgroundColor: '#d8e2dc'
+}
+
 interface Word {
   text: string
   meaning: string
@@ -10,9 +22,10 @@ interface Word {
 
 function WordView(word: Word) {
   return (
-    <div key={word.text}>
-      {word.text} / {word.meaning}
-    </div>
+    <tr key={word.text}>
+      <th style={thStyle}>{word.text}</th>
+      <td>{word.meaning}</td>
+    </tr>
   )
 }
 
@@ -49,7 +62,7 @@ function WordList() {
 
   return (
     <section>
-      {words.map((word) => WordView(word))}
+      <table style={tableStyle}>{words.map((word) => WordView(word))}</table>
       <Link to='/' style={linkStyle}>
         홈으로
       </Link>
